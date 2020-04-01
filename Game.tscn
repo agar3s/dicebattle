@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Warrior.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game.gd" type="Script" id=2]
+[ext_resource path="res://Dice.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/rpg_dungeon_set_assets_DB16_palette.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 926.853, 282.517, 162.473, 177.995 )
+
+[node name="Game" type="Node"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 239.674 ],
+"_edit_vertical_guides_": [ 29.6202, 159.829, 129.594 ]
+}
+
+[node name="Scenario" type="CanvasLayer" parent="."]
+
+[node name="Background2" type="Sprite" parent="Scenario"]
+position = Vector2( -1, 63 )
+texture = SubResource( 1 )
+centered = false
+
+[node name="Background" type="Sprite" parent="Scenario"]
+position = Vector2( -1, -11 )
+texture = SubResource( 1 )
+centered = false
+
+[node name="Player" parent="Scenario" instance=ExtResource( 1 )]
+position = Vector2( -4.38927, -9 )
+animation = "soldier_idle"
+offset = Vector2( 30, 60 )
+
+[node name="Enemy" parent="Scenario" instance=ExtResource( 1 )]
+position = Vector2( -4.38927, -9 )
+animation = "warrior_idle"
+offset = Vector2( 125, 60 )
+flip_h = true
+type = "warrior"
+
+[node name="Dices" type="Node2D" parent="Scenario"]
+position = Vector2( 0, -9 )
+
+[node name="Dice" parent="Scenario/Dices" instance=ExtResource( 3 )]
+position = Vector2( 30, 124 )
+
+[node name="Dice2" parent="Scenario/Dices" instance=ExtResource( 3 )]
+position = Vector2( 80, 124 )
+
+[node name="Dice3" parent="Scenario/Dices" instance=ExtResource( 3 )]
+position = Vector2( 130, 124 )
+
+[node name="Sprite2" type="Sprite" parent="Scenario"]
+position = Vector2( 0, -9 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Attack_Player" type="Button" parent="HUD"]
+anchor_left = 0.037
+anchor_top = 0.715
+anchor_right = 0.037
+anchor_bottom = 0.715
+margin_left = 3.10101
+margin_top = 41.3032
+margin_right = 55.101
+margin_bottom = 61.3032
+text = "Roll"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack_Enemy" type="Button" parent="HUD"]
+anchor_left = 0.037
+anchor_top = 0.715
+anchor_right = 0.037
+anchor_bottom = 0.715
+margin_left = 92.929
+margin_top = 41.1249
+margin_right = 144.929
+margin_bottom = 61.1249
+text = "Attack"
+__meta__ = {
+"_edit_use_anchors_": false
+}
